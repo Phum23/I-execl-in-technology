@@ -260,18 +260,22 @@
 </head>
 <body>
 
-    <!-- Navigation Bar (เอาปุ่มหน้าแรกออกตามบรีฟ เหลือปุ่มเปิดเมนูบอร์ดคอนเทนต์) -->
+    <!-- Navigation Bar -->
     <nav>
         <div class="logo">
             IXT <span>I excel in Technology</span>
         </div>
         <ul class="nav-links">
-            
+            <!-- สามารถเพิ่มเมนูเพิ่มเติมตรงนี้ได้ -->
         </ul>
     </nav>
 
-    <!-- Hero Section (หน้าแรกหลัก) -->
-    
+    <!-- Hero Section (เพิ่มเนื้อหาต้อนรับที่สมบูรณ์) -->
+    <section class="hero">
+        <h1>I Excel in Technology</h1>
+        <p>แพลตฟอร์มการเรียนรู้ พัฒนาทักษะด้านไอที โค้ดดิ้ง และเทคโนโลยีสำหรับคุณ</p>
+        <button class="nav-btn" onclick="openContent()">เปิดระบบแนะนำหน้าเว็บ</button>
+    </section>
 
     <!-- Content Section (กล่องข้อความสไตล์โพสต์คอนเทนต์) -->
     <section class="content-section" id="content-section">
@@ -291,24 +295,95 @@
 
     <!-- Features Section -->
     <section class="features">
-    <h2 class="section-title"></h2>
-    <div class="grid">
-        
-        <!-- กล่อง Innovation ที่เปลี่ยนเป็นลิงก์ (ใส่ชื่อไฟล์ที่ต้องการในช่อง href) -->
-        <a href="learning.html" class="card" style="text-decoration: none; display: block; height: 100%;">
-            <h3>Learning</h3>
-            <p>การเรียนรู้เกี่ญวกับ Software และ Hardware และ ภาษาของโปรแกรมอย่างง่ายเพื่อการสร้างเว็บไซต์</p>
-        </a>
+        <h2 class="section-title">สำรวจหมวดหมู่หลัก</h2>
+        <div class="grid">
+            <!-- กล่อง Learning -->
+            <a href="learning.html" class="card" style="text-decoration: none; display: block; height: 100%;">
+                <h3>Learning</h3>
+                <p>การเรียนรู้เกี่ยวกับ Software และ Hardware และภาษาของโปรแกรมอย่างง่ายเพื่อการสร้างเว็บไซต์</p>
+            </a>
 
-        <a href="game.html" class="card" style="text-decoration: none; display: block; height: 100%;">
-            <h3>Game</h3>
-            <p>ฝึกการพิมพ์ภาษา html เพื่อจดจำและนำไปใช้สร้างเว็บไซต์</p>
-        </a>
+            <!-- กล่อง Game -->
+            <a href="game.html" class="card" style="text-decoration: none; display: block; height: 100%;">
+                <h3>Game</h3>
+                <p>ฝึกการพิมพ์ภาษา html เพื่อจดจำและนำไปใช้สร้างเว็บไซต์</p>
+            </a>
 
-        <a href="wiki.html" class="card" style="text-decoration: none; display: block; height: 100%;">
-            <h3>Wiki</h3>
-            <p>สืบค้นหรือถามข้อมูลเกี่ยวกับ IT เพิ่มเติม</p>
-        </a>
+            <!-- กล่อง Wiki -->
+            <a href="wiki.html" class="card" style="text-decoration: none; display: block; height: 100%;">
+                <h3>Wiki</h3>
+                <p>สืบค้นหรือถามข้อมูลเกี่ยวกับ IT เพิ่มเติม</p>
+            </a>
+        </div>
+    </section>
 
-    </div>
-</section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 IXT | I excel in Technology. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript สำหรับควบคุมการทำงานของปุ่ม -->
+    <script>
+        const pages = [
+            {
+                title: "ยินดีต้อนรับสู่ IXT",
+                body: "<strong>พัฒนาทักษะด้านเทคโนโลยีของคุณ</strong><span>ที่นี่เราคือศูนย์รวมความรู้ด้าน Software, Hardware และการเขียนโปรแกรมพื้นฐาน</span>"
+            },
+            {
+                title: "ทำไมต้อง IXT?",
+                body: "<strong>เรียนรู้อย่างเข้าใจง่าย</strong><span>ออกแบบมาเพื่อให้ทุกคนสามารถเริ่มต้นเขียนโค้ดและเข้าใจเทคโนโลยีได้ด้วยตัวเอง</span>"
+            },
+            {
+                title: "พร้อมลุยกันหรือยัง?",
+                body: "<strong>เลือกเมนูด้านล่างเพื่อเริ่มใช้งาน</strong><span>ไม่ว่าจะเป็น Learning, Game หรือ Wiki พร้อมช่วยเหลือคุณเสมอ</span>"
+            }
+        ];
+
+        let currentPageIndex = 0;
+
+        function updateContent() {
+            const titleEl = document.getElementById('content-title');
+            const bodyEl = document.getElementById('content-body');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            if(titleEl && bodyEl) {
+                titleEl.innerText = pages[currentPageIndex].title;
+                bodyEl.innerHTML = pages[currentPageIndex].body;
+            }
+
+            if(prevBtn) prevBtn.disabled = currentPageIndex === 0;
+            if(nextBtn) nextBtn.disabled = currentPageIndex === pages.length - 1;
+        }
+
+        function changePage(direction) {
+            currentPageIndex += direction;
+            if (currentPageIndex < 0) currentPageIndex = 0;
+            if (currentPageIndex >= pages.length) currentPageIndex = pages.length - 1;
+            updateContent();
+        }
+
+        function openContent() {
+            const heroSection = document.querySelector('.hero');
+            const contentSection = document.getElementById('content-section');
+            
+            if(heroSection) heroSection.style.display = 'none';
+            if(contentSection) {
+                contentSection.style.display = 'block';
+                contentSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            currentPageIndex = 0;
+            updateContent();
+        }
+
+        function goBackHome() {
+            const heroSection = document.querySelector('.hero');
+            const contentSection = document.getElementById('content-section');
+            
+            if(heroSection) heroSection.style.display = 'flex';
+            if(contentSection) contentSection.style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
