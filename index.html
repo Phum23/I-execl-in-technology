@@ -13,18 +13,22 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #0f172a;
+            background-color: #060913;
             color: #f8fafc;
             line-height: 1.6;
+            overflow-x: hidden;
         }
-        /* Navigation */
+
+        /* Navigation - Glassmorphism */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 10%;
-            background-color: #1e293b;
-            border-bottom: 2px solid #38bdf8;
+            padding: 1.2rem 10%;
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -32,15 +36,19 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 800;
-            color: #38bdf8;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
+            display: flex;
+            flex-direction: column;
         }
         .logo span {
-            color: #ffffff;
-            font-size: 0.9rem;
+            color: #94a3b8;
+            font-size: 0.75rem;
             font-weight: 400;
-            display: block;
-            letter-spacing: 0px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
         .nav-links {
             display: flex;
@@ -48,342 +56,89 @@
             gap: 1.5rem;
             align-items: center;
         }
-        /* ปุ่มบนแถบเมนูดีไซน์ล้ำสมัยแบบเดียวกันทั้งหมด */
-        .nav-btn {
+        .nav-btn, .nav-btn-link {
             padding: 0.5rem 1.2rem;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            color: #38bdf8;
-            border: 1px solid #38bdf8;
-            background-color: rgba(56, 189, 248, 0.1);
-            cursor: pointer;
-        }
-        .nav-btn:hover {
-            background-color: #38bdf8;
-            color: #0f172a;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-        }
-        /* ปุ่มลิงก์หน้าแรกข้ามไฟล์ */
-        .nav-btn-link {
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: 600;
             font-size: 0.95rem;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             color: #38bdf8;
-            border: 1px solid #38bdf8;
-            background-color: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            background-color: rgba(56, 189, 248, 0.05);
             cursor: pointer;
         }
-        .nav-btn-link:hover {
+        .nav-btn:hover, .nav-btn-link:hover {
             background-color: #38bdf8;
-            color: #0f172a;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            color: #060913;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+            transform: translateY(-2px);
         }
-        /* Hero Section */
+
+        /* Hero Section - Glowing Tech Background */
         .hero {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            min-height: 70vh;
+            min-height: 75vh;
             padding: 2rem 10%;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            background: radial-gradient(circle at 50% 30%, #1e1b4b 0%, #060913 70%);
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(56, 189, 248, 0.1);
+            filter: blur(120px);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .hero h1, .hero p, .hero button {
+            position: relative;
+            z-index: 1;
         }
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #38bdf8, #818cf8);
+            margin-bottom: 1.2rem;
+            background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
         .hero p {
             font-size: 1.25rem;
             color: #94a3b8;
-            max-width: 600px;
-            margin-bottom: 2rem;
+            max-width: 650px;
+            margin-bottom: 2.5rem;
         }
-        /* Content Section (กล่องแสดงเนื้อหาจัดกึ่งกลางเด่นชัด) */
+
+        /* Content Section */
         .content-section {
             display: none;
-            padding: 4rem 10%;
-            background-color: #1e293b;
-            min-height: 65vh;
+            padding: 5rem 10%;
+            background-color: #060913;
+            min-height: 70vh;
         }
         .content-container {
             max-width: 850px;
             margin: 0 auto;
-            background: #0b1329;
-            padding: 3.5rem 2.5rem;
-            border-radius: 16px;
-            border: 2px solid rgba(56, 189, 248, 0.2);
-            box-shadow: 0 0 35px rgba(56, 189, 248, 0.15);
+            background: linear-gradient(145deg, #0f172a, #0b1329);
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.1);
             display: flex;
             flex-direction: column;
             text-align: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
         }
         .content-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-            background: linear-gradient(to right, #38bdf8, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .content-body {
-            font-size: 1.25rem;
-            color: #cbd5e1;
-            line-height: 1.8;
-            margin-bottom: 3.5rem;
-            min-height: 220px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        /* ตกแต่งเนื้อหาย่อยภายในกล่องให้อ่านง่าย */
-        .content-body strong {
-            color: #38bdf8;
-            font-size: 1.4rem;
-            display: block;
-            margin-bottom: 0.8rem;
-        }
-        .content-body span {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            display: block;
-            margin-top: 0.5rem;
-        }
-        /* ปุ่มควบคุมการเปลี่ยนหน้าก่อนหน้า-ถัดไป */
-        .nav-controls {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            width: 100%;
-            margin-top: auto;
-        }
-        .page-btn {
-            background-color: #1e293b;
-            color: #cbd5e1;
-            border: 1px solid #334155;
-            padding: 0.8rem 2.2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .page-btn:hover:not(:disabled) {
-            border-color: #38bdf8;
-            color: #fff;
-            background-color: #334155;
-            transform: translateY(-1px);
-        }
-        .page-btn:disabled {
-            opacity: 0.25;
-            cursor: not-allowed;
-        }
-        /* ปุ่มหน้าแรกสไตล์ปุ่มปิด/ย้อนกลับสไตล์โพสต์โซเชียล */
-        .home-btn {
-            border-color: #f43f5e;
-            color: #f43f5e;
-            background-color: rgba(244, 63, 94, 0.05);
-        }
-        .home-btn:hover {
-            border-color: #f43f5e !important;
-            background-color: #f43f5e !important;
-            color: #fff !important;
-            box-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
-        }
-        /* Features Section */
-        .features {
-            padding: 5rem 10%;
-            background-color: #0f172a;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        .card {
-            background-color: #1e293b;
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid #334155;
-            transition: border-color 0.3s;
-        }
-        .card:hover {
-            border-color: #38bdf8;
-        }
-        .card h3 {
-            color: #38bdf8;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-        .card p {
-            color: #94a3b8;
-        }
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: #1e293b;
-            color: #64748b;
-            font-size: 0.9rem;
-            border-top: 1px solid #334155;
-        }
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .nav-links {
-                display: none;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="logo">
-            IXT <span>I excel in Technology</span>
-        </div>
-        <ul class="nav-links">
-            <!-- สามารถเพิ่มเมนูเพิ่มเติมตรงนี้ได้ -->
-        </ul>
-    </nav>
-
-    <!-- Hero Section (เพิ่มเนื้อหาต้อนรับที่สมบูรณ์) -->
-    <section class="hero">
-        <h1>I Excel in Technology</h1>
-        <p>แพลตฟอร์มการเรียนรู้ พัฒนาทักษะด้านไอที โค้ดดิ้ง และเทคโนโลยีสำหรับคุณ</p>
-        <button class="nav-btn" onclick="openContent()">เปิดระบบแนะนำหน้าเว็บ</button>
-    </section>
-
-    <!-- Content Section (กล่องข้อความสไตล์โพสต์คอนเทนต์) -->
-    <section class="content-section" id="content-section">
-        <div class="content-container">
-            <div class="content-title" id="content-title">Title</div>
-            <div class="content-body" id="content-body">Content...</div>
-            <div class="nav-controls">
-                <button class="page-btn" id="prev-btn" onclick="changePage(-1)" disabled>ก่อนหน้า</button>
-                
-                <!-- ปุ่มหน้าแรก (ย้ายมาอยู่ตรงนี้ เพื่อทำหน้าที่เสมือนปุ่มปิด/ย้อนกลับหน้าแรกสุด) -->
-                <button class="page-btn home-btn" onclick="goBackHome()">หน้าแรก</button>
-                
-                <button class="page-btn" id="next-btn" onclick="changePage(1)">ถัดไป</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <h2 class="section-title">สำรวจหมวดหมู่หลัก</h2>
-        <div class="grid">
-            <!-- กล่อง Learning -->
-            <a href="learning.html" class="card" style="text-decoration: none; display: block; height: 100%;">
-                <h3>Learning</h3>
-                <p>การเรียนรู้เกี่ยวกับ Software และ Hardware และภาษาของโปรแกรมอย่างง่ายเพื่อการสร้างเว็บไซต์</p>
-            </a>
-
-            <!-- กล่อง Game -->
-            <a href="game.html" class="card" style="text-decoration: none; display: block; height: 100%;">
-                <h3>Game</h3>
-                <p>ฝึกการพิมพ์ภาษา html เพื่อจดจำและนำไปใช้สร้างเว็บไซต์</p>
-            </a>
-
-            <!-- กล่อง Wiki -->
-            <a href="wiki.html" class="card" style="text-decoration: none; display: block; height: 100%;">
-                <h3>Wiki</h3>
-                <p>สืบค้นหรือถามข้อมูลเกี่ยวกับ IT เพิ่มเติม</p>
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 IXT | I excel in Technology. All rights reserved.</p>
-    </footer>
-
-    <!-- JavaScript สำหรับควบคุมการทำงานของปุ่ม -->
-    <script>
-        const pages = [
-            {
-                title: "ยินดีต้อนรับสู่ IXT",
-                body: "<strong>พัฒนาทักษะด้านเทคโนโลยีของคุณ</strong><span>ที่นี่เราคือศูนย์รวมความรู้ด้าน Software, Hardware และการเขียนโปรแกรมพื้นฐาน</span>"
-            },
-            {
-                title: "ทำไมต้อง IXT?",
-                body: "<strong>เรียนรู้อย่างเข้าใจง่าย</strong><span>ออกแบบมาเพื่อให้ทุกคนสามารถเริ่มต้นเขียนโค้ดและเข้าใจเทคโนโลยีได้ด้วยตัวเอง</span>"
-            },
-            {
-                title: "พร้อมลุยกันหรือยัง?",
-                body: "<strong>เลือกเมนูด้านล่างเพื่อเริ่มใช้งาน</strong><span>ไม่ว่าจะเป็น Learning, Game หรือ Wiki พร้อมช่วยเหลือคุณเสมอ</span>"
-            }
-        ];
-
-        let currentPageIndex = 0;
-
-        function updateContent() {
-            const titleEl = document.getElementById('content-title');
-            const bodyEl = document.getElementById('content-body');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-
-            if(titleEl && bodyEl) {
-                titleEl.innerText = pages[currentPageIndex].title;
-                bodyEl.innerHTML = pages[currentPageIndex].body;
-            }
-
-            if(prevBtn) prevBtn.disabled = currentPageIndex === 0;
-            if(nextBtn) nextBtn.disabled = currentPageIndex === pages.length - 1;
-        }
-
-        function changePage(direction) {
-            currentPageIndex += direction;
-            if (currentPageIndex < 0) currentPageIndex = 0;
-            if (currentPageIndex >= pages.length) currentPageIndex = pages.length - 1;
-            updateContent();
-        }
-
-        function openContent() {
-            const heroSection = document.querySelector('.hero');
-            const contentSection = document.getElementById('content-section');
-            
-            if(heroSection) heroSection.style.display = 'none';
-            if(contentSection) {
-                contentSection.style.display = 'block';
-                contentSection.scrollIntoView({ behavior: 'smooth' });
-            }
-            currentPageIndex = 0;
-            updateContent();
-        }
-
-        function goBackHome() {
-            const heroSection = document.querySelector('.hero');
-            const contentSection = document.getElementById('content-section');
-            
-            if(heroSection) heroSection.style.display = 'flex';
-            if(contentSection) contentSection.style.display = 'none';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
-</body>
-</html>
+            font-size: 2.4rem;
+            font-weight: 800
