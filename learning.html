@@ -104,6 +104,61 @@
     </style>
 </head>
 <body>
+    <script>
+        const pages = [
+            {
+                title: "IT (Information Technology)",
+                body: "<strong>ความหมายของ IT</strong>
+                    <span>• Information (สารสนเทศ): ข้อมูล ข้อเท็จจริง หรือข่าวสารที่ผ่านการประมวลผลและจัดระเบียบจนสามารถนำไปใช้ประโยชน์ได้
+                            • Technology (เทคโนโลยี): เครื่องมือ อุปกรณ์ หรือระบบที่มนุษย์สร้างขึ้นมาเพื่อช่วยในการทำงานหรือแก้ปัญหา
+                            • เทคโนโลยีสารสนเทศ (IT): การนำคอมพิวเตอร์ ซอฟต์แวร์ ระบบเครือข่าย และอุปกรณ์สื่อสาร มาใช้ในการจัดเก็บ ค้นหา ประมวลผล และส่งต่อข้อมูล</span>"
+            },
+            {
+                title: "ฮาร์ดแวร์ (Hardware)",
+                body: "<strong>อุปกรณ์ทางกายภาพที่สามารถจับต้องได้ ทำหน้าที่ประมวลผล จัดเก็บ และแสดงผลข้อมูล</strong>
+                    <span>ฮาร์ดแวร์จะทำงานร่วมกันโดยแบ่งออกเป็น 4 กลุ่มหน้าที่ ตามวงจรการทำงานของคอมพิวเตอร์ ดังนี้</span>"
+            },
+            {
+                title: "1. หน่วยรับข้อมูล (Input Devices)",
+                body: "<strong>พร้อมสู้ศึกโลกอนาคต</strong><span>เตรียมความพร้อมให้องค์กรของคุณมีความยืดหยุ่น ปลอดภัย และพร้อมรับมือกับทุกความเปลี่ยนแปลง</span>"
+            }
+            {
+                title: "Future Ready",
+                body: "<strong>พร้อมสู้ศึกโลกอนาคต</strong><span>เตรียมความพร้อมให้องค์กรของคุณมีความยืดหยุ่น ปลอดภัย และพร้อมรับมือกับทุกความเปลี่ยนแปลง</span>"
+            }
+        ];
+
+        let currentPage = 0;
+
+        function openContent(index) {
+            currentPage = index;
+            document.getElementById('hero-section').style.display = 'none';
+            document.getElementById('content-section').style.display = 'block';
+            updateContent();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goBackHome() {
+            document.getElementById('content-section').style.display = 'none';
+            document.getElementById('hero-section').style.display = 'flex';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            if (currentPage < 0) currentPage = 0;
+            if (currentPage >= pages.length) currentPage = pages.length - 1;
+            updateContent();
+        }
+
+        function updateContent() {
+            document.getElementById('content-title').innerText = pages[currentPage].title;
+            document.getElementById('content-body').innerHTML = pages[currentPage].body;
+            
+            document.getElementById('prev-btn').disabled = (currentPage === 0);
+            document.getElementById('next-btn').disabled = (currentPage === pages.length - 1);
+        }
+    
     <nav>
         <div class="logo">
             IXT <span>I excel in Technology</span>
@@ -118,5 +173,6 @@
         
         <a href="learning2.html" class="btn-next">NEXT &rarr;</a>
     </div>
+        </script>
 </body>
 </html>
