@@ -104,6 +104,17 @@
     </style>
 </head>
 <body>
+    <section class="content-section" id="content-section">
+        <div class="content-container">
+            <div class="content-title" id="content-title">Title</div>
+            <div class="content-body" id="content-body">Content...</div>
+            <div class="nav-controls">
+                <button class="page-btn" id="prev-btn" onclick="changePage(-1)" disabled>ก่อนหน้า</button>
+                <button class="page-btn home-btn" onclick="goBackHome()">หน้าแรก</button>
+                <button class="page-btn" id="next-btn" onclick="changePage(1)">ถัดไป</button>
+            </div>
+        </div>
+    </section>
     <script>
         const pages = [
             {
