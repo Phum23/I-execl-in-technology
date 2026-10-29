@@ -255,9 +255,11 @@
 
     <!-- Hero Section -->
     <section class="hero" id="hero-section">
-        <h1>I Excel In Technology</h1>
-        <p>ยกระดับธุรกิจและสร้างสรรค์อนาคตของคุณด้วยนวัตกรรมและเทคโนโลยีที่ล้ำสมัยที่สุด</p>
-        <button class="hero-cta" onclick="openContent(0)">เริ่มต้นใช้งานเลย</button>
+        <div>
+            <!-- ปุ่มกลับหน้าหลักแบบสมูทโดยใช้ฟังก์ชัน goBackHome() -->
+            <a href="index.html" onclick="goBackHome(); return false;" class="nav-btn-back">กลับหน้าหลัก</a>
+        </div>
+        <button class="hero-cta" onclick="openContent(0)">เริ่มเรียน</button>
     </section>
 
     <!-- Content Section (กล่องข้อความ Interactive ที่ซ่อน/แสดง) -->
